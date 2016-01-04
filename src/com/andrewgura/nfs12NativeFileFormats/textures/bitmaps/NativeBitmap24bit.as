@@ -14,7 +14,6 @@ public class NativeBitmap24bit extends BitmapData implements INativeBitmap {
     }
 
     public function set name(value:String):void {
-        trace("name setted!");
         _name = value;
     }
 
