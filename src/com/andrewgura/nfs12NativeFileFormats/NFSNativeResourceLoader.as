@@ -39,6 +39,8 @@ public class NFSNativeResourceLoader {
             return new NativeFshFile(data);
         } else if (id == 'FNTF') {
             return new NativeFfnFile(data);
+        } else if (id == 'wwww') {
+            return new NativeCFMFile(data);
         } else {
             throw new Error("Unknown file format!");
         }

@@ -9,7 +9,7 @@ package com.andrewgura.nfs12NativeFileFormats {
 			super(file);
 		}
 		
-		private function uncompress(input:ByteArray):ByteArray {	
+		private function uncompress(input:ByteArray):ByteArray {
 			var output:ByteArray = new ByteArray();	
 			var packCode:uint, packA: uint, packB: uint;
 			var len:uint, offset:uint;

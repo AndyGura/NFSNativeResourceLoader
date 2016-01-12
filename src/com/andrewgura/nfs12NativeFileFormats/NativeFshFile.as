@@ -5,12 +5,14 @@ import com.andrewgura.nfs12NativeFileFormats.textures.bitmaps.INativeBitmap;
 import com.andrewgura.nfs12NativeFileFormats.textures.palettes.INativePalette;
 
 import flash.utils.ByteArray;
+import flash.utils.Dictionary;
 import flash.utils.Endian;
 
 import mx.collections.ArrayCollection;
 
 public class NativeFshFile extends ArrayCollection {
 
+    public var texturesMap:Dictionary = new Dictionary;
     private var _globalPalette:INativePalette;
     public function get globalPalette():INativePalette {
         return _globalPalette;
@@ -60,6 +62,7 @@ public class NativeFshFile extends ArrayCollection {
             if (resource is INativeBitmap) {
                 (resource as INativeBitmap).name = name;
                 addItem(resource);
+                texturesMap[name] = resource;
             } else if (resource is INativePalette) {
                 this.globalPalette = resource as INativePalette;
             }
