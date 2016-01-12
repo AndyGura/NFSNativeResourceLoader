@@ -2,19 +2,14 @@ package com.andrewgura.nfs12NativeFileFormats.textures.bitmaps {
 
 import com.andrewgura.nfs12NativeFileFormats.textures.INativeTextureResource;
 
-import flash.display.BitmapData;
 import flash.display.IBitmapDrawable;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Rectangle;
 
-import com.andrewgura.nfs12NativeFileFormats.textures.INativeTextureResource;
-
 public interface INativeBitmap extends INativeTextureResource, IBitmapDrawable {
 
     function addNestedResource(value:INativeTextureResource):Boolean;
-
-    function getResized():BitmapData;
 
     function get name():String;
 

@@ -39,24 +39,6 @@ public class NativeBitmap32bit extends BitmapData implements INativeBitmap {
         }
     }
 
-    public function getResized():BitmapData {
-        var scaleX:Number = calculateNewDimension(width) / width;
-        var scaleY:Number = calculateNewDimension(height) / height;
-        var matrix:Matrix = new Matrix();
-        matrix.scale(scaleX, scaleY);
-        var newBitmap:NativeBitmapWrapper = new NativeBitmapWrapper(calculateNewDimension(width), calculateNewDimension(height), true, 0);
-        newBitmap.draw(this, matrix);
-        newBitmap.name = name;
-        return newBitmap;
-    }
-
-    private function calculateNewDimension(value:Number):Number {
-        for (var i:Number = 1; i <= 2048; i <<= 1) {
-            if (i >= value) break;
-        }
-        return i;
-    }
-
     public function get textureWidth():Number {
         return super.width;
     }

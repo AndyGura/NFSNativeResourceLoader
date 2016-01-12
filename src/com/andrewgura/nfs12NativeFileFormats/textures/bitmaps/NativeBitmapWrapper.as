@@ -20,10 +20,6 @@ public class NativeBitmapWrapper extends BitmapData implements INativeBitmap {
         return false;
     }
 
-    public function getResized():BitmapData {
-        return this;
-    }
-
     public function get name():String {
         return _name;
     }

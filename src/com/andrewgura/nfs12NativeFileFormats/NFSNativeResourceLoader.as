@@ -21,21 +21,24 @@ import mx.collections.ArrayCollection;
 
 public class NFSNativeResourceLoader {
 
-    public static function loadTextureFile(file:File):ArrayCollection {
+    public static function loadNativeFile(file:File):* {
         var data:ByteArray = new ByteArray();
         var f:FileStream = new FileStream();
         f.open(file, FileMode.READ);
         f.readBytes(data, 0, f.bytesAvailable);
         f.close();
-        var nativeCollection:ArrayCollection = loadTextureFileFromData(data);
-        return nativeCollection;
+        var parsedData:* = loadNativeFileFromData(data);
+        return parsedData;
     }
 
-    public static function loadTextureFileFromData(data:ByteArray):ArrayCollection {
+    public static function loadNativeFileFromData(data:ByteArray):* {
+        var id:String = data.readUTFBytes(4);
         if (((data[0] & 0xfe) == 0x10) && (data[1] == 0xfb)) {
             return new NativeQfsFile(data);
-        } else if (data.readUTFBytes(4) == 'SHPI') {
+        } else if (id == 'SHPI') {
             return new NativeFshFile(data);
+        } else if (id == 'FNTF') {
+            return new NativeFfnFile(data);
         } else {
             throw new Error("Unknown file format!");
         }
