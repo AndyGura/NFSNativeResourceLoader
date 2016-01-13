@@ -5,7 +5,7 @@
       <configuration name="NFSNativeResourceLoader" target-platform="Desktop" output-type="Library" output-file="NFSNativeResourceLoader.swc" output-folder="$MODULE_DIR$/bin">
         <dependencies target-player="20.0">
           <entries>
-            <entry module-name="away3d-core-fp11" build-configuration-name="away3d-core-fp11">
+            <entry library-id="c3cdae76-c54b-4615-bc42-df4ef7aaf0ce">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -26,6 +26,15 @@
     </content>
     <orderEntry type="jdk" jdkName="4.14.1.air-20.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="away3d-core-fp11" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="c3cdae76-c54b-4615-bc42-df4ef7aaf0ce" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/away3d-core-fp11_4_1_6.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
