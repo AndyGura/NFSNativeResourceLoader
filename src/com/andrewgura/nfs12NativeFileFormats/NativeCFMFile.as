@@ -35,7 +35,8 @@ public class NativeCfmFile extends ArrayCollection {
         file.readBytes(data, 0, offsets[1] - offsets[0]);
         var modelDescription:ModelDescriptionVO = new ModelDescriptionVO(name);
         for each (var item:INativeBitmap in NativeFshFile(textures)) {
-            var model:SubModelDescriptionVO = processSubModel(data, item.name, getResized(new Bitmap(item as BitmapData)).bitmapData);
+            var model:SubModelDescriptionVO = processSubModel(data, item.name, item as BitmapData);
+            model.texture = getResized(new Bitmap(item as BitmapData)).bitmapData;
             modelDescription.subModels.addItem(model);
         }
         addItem(modelDescription);
@@ -57,7 +58,7 @@ public class NativeCfmFile extends ArrayCollection {
             data.position += 1;
             var offset3D:uint = data.readUnsignedInt();
             var offset2D:uint = data.readUnsignedInt();
-            if (polType == 0x83) {
+            if (polType == 0x8B || polType == 0x83) {
                 switch (normal) {
                     case 17://2-sided polygons
                     case 19:
@@ -65,15 +66,19 @@ public class NativeCfmFile extends ArrayCollection {
                                 0, 1, 2, 0, 2, 1);
                         break;
                     case 18://default polygon
+                    case 2:
+                    case 1:
                         setupPolygon(subModel, data, offset3D, offset2D, texture.width, texture.height,
                                 0, 1, 2);
                         break;
                     case 16://inverted polygon
+                    case 3:
+                    case 0:
                         setupPolygon(subModel, data, offset3D, offset2D, texture.width, texture.height,
                                 0, 2, 1);
                         break;
                     default:
-                        trace("Unknown normal:", normal);
+                        throw new Error("Unknown normal: " + normal + ", polygon type: " + polType);
                 }
             } else if (polType == 0x84 || polType == 0x8C) {
                 switch (normal) {
@@ -83,22 +88,24 @@ public class NativeCfmFile extends ArrayCollection {
                                 0, 1, 3, 1, 2, 3, 0, 3, 1, 1, 3, 2);
                         break;
                     case 18://default polygon
+                    case 2:
+                    case 1:
                         setupPolygon(subModel, data, offset3D, offset2D, texture.width, texture.height,
                                 0, 1, 3, 1, 2, 3);
                         break;
                     case 16://inverted polygon
+                    case 3:
+                    case 0:
                         setupPolygon(subModel, data, offset3D, offset2D, texture.width, texture.height,
                                 0, 3, 1, 1, 3, 2);
                         break;
                     default:
-                        trace("Unknown normal:", normal);
+                        throw new Error("Unknown normal: " + normal + ", polygon type: " + polType);
                 }
             } else {
-                //throw new Error("unknown polygon!");
-                trace("Unknown polygon! name: " + materialID);
+                throw new Error("unknown polygon: " + polType);
             }
         }
-        subModel.texture = texture;
         return subModel;
     }
 
