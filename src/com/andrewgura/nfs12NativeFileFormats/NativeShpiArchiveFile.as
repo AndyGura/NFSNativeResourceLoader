@@ -10,7 +10,7 @@ import flash.utils.Endian;
 
 import mx.collections.ArrayCollection;
 
-public class NativeFshFile extends ArrayCollection {
+public class NativeShpiArchiveFile extends ArrayCollection {
 
     public var texturesMap:Dictionary = new Dictionary;
     private var _globalPalette:INativePalette;
@@ -28,7 +28,7 @@ public class NativeFshFile extends ArrayCollection {
     public var directoryIdentifier:String;
 
 
-    public function NativeFshFile(file:ByteArray) {
+    public function NativeShpiArchiveFile(file:ByteArray) {
         file.endian = Endian.LITTLE_ENDIAN;       //Это означет, что, например, число 00 00 00 C3 записано в файле как "С3 00 00 00"
         file.position = 8;
         var instanceCount:uint = file.readInt();

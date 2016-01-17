@@ -2,7 +2,7 @@ package com.andrewgura.nfs12NativeFileFormats {
 	
 	import flash.utils.ByteArray;
 
-	public class NativeQfsFile extends NativeFshFile {
+	public class NativeQfsFile extends NativeShpiArchiveFile {
 		
 		public function NativeQfsFile(file: ByteArray) {
 			file = uncompress(file);
