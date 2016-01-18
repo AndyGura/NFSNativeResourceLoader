@@ -46,20 +46,20 @@ public class NativeOripFile {
                         break;
                     case 18://default polygon
                     case 2:
-                    case 1:
+                    case 3:
                     case 48://?
                     case 50://?
                         setupPolygon(subModel, data, offset3D, offset2D, 0, 1, 2);
                         break;
                     case 16://inverted polygon
-                    case 3:
+                    case 1:
                     case 0:
                         setupPolygon(subModel, data, offset3D, offset2D, 0, 2, 1);
                         break;
                     default:
                         throw new Error("Unknown normal: " + normal + ", polygon type: " + polType);
                 }
-            } else if (polType == 0x84 || polType == 0x8C) {
+            } else if (polType == 0x84 || polType == 0x8C || polType == 0x04) {
                 switch (normal) {
                     case 17://2-sided polygons
                     case 19:
@@ -67,21 +67,21 @@ public class NativeOripFile {
                         break;
                     case 18://default polygon
                     case 2:
-                    case 1:
+                    case 3:
                     case 48://?
                     case 50://?
                         setupPolygon(subModel, data, offset3D, offset2D, 0, 1, 3, 1, 2, 3);
                         break;
                     case 16://inverted polygon
-                    case 3:
+                    case 1:
                     case 0:
                         setupPolygon(subModel, data, offset3D, offset2D, 0, 3, 1, 1, 3, 2);
                         break;
                     default:
-                        throw new Error("Unknown normal: " + normal + ", polygon type: " + polType);
+                        throw new Error("Unknown normal: 0x" + normal.toString(16) + "; polygon type: 0x" + polType.toString(16));
                 }
             } else {
-                throw new Error("unknown polygon: " + polType);
+                throw new Error("unknown polygon: 0x" + polType.toString(16));
             }
             output.addItem(subModel);
         }
