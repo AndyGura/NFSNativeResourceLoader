@@ -24,7 +24,7 @@ public class NativeWwwwArchiveFile extends ArrayCollection {
             file.position = offsets[i];
             var chunkLength:Number = (i < chunksCount - 1 ? offsets[i + 1] - offsets[i] : file.bytesAvailable);
             file.readBytes(data, 0, chunkLength);
-            chunks.addItem(NFSNativeResourceLoader.loadNativeFileFromData(name+'.'+i, 'fam', data));
+            chunks.addItem(NFSNativeResourceLoader.loadNativeFileFromData(name+'.'+i, data));
         }
         for (var i:Number=0;i<chunks.length-1;i++) {
             if (chunks[i] is NativeOripFile && chunks[i+1] is NativeShpiArchiveFile) {
