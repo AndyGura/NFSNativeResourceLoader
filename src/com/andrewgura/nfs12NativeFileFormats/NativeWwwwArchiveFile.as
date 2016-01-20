@@ -29,7 +29,6 @@ public class NativeWwwwArchiveFile extends ArrayCollection {
         for (var i:Number=0;i<chunks.length-1;i++) {
             if (chunks[i] is NativeOripFile && chunks[i+1] is NativeShpiArchiveFile) {
                 ModelsUtils.attachSHPItoOrip(NativeShpiArchiveFile(chunks[i+1]), NativeOripFile(chunks[i]));
-                chunks.removeItemAt(i+1);
             }
         }
         addAll(chunks);
