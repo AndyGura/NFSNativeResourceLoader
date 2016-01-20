@@ -84,7 +84,7 @@ public class NativeShpiArchiveFile extends ArrayCollection {
                 (resource as INativeBitmap).name = name;
                 addItem(resource);
                 texturesMap[name] = resource;
-            } else if (resource is INativePalette && name.toLowerCase() == '!pal') {
+            } else if (resource is INativePalette && name.toLowerCase() != '!xxx') {
                 this.globalPalette = resource as INativePalette;
             }
             resource = null;
