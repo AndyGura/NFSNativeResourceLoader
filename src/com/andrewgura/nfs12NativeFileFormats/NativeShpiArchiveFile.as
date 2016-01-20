@@ -65,6 +65,18 @@ public class NativeShpiArchiveFile extends ArrayCollection {
             file.position = offset;
             file.readBytes(tmpArray, 0, length);
             resource = parseTextureResource(tmpArray, globalPalette);
+            if (tmpArray.bytesAvailable > 0) {
+                try {
+                    var tmpArray2:ByteArray = new ByteArray();
+                    tmpArray.readBytes(tmpArray2, 0, tmpArray.bytesAvailable);
+                    var subresource:INativeTextureResource = parseTextureResource(tmpArray2);
+                    if (subresource is INativePalette) {
+                        INativeBitmap(resource).addNestedResource(subresource);
+                    }
+                } catch (e:Error) {
+                    //silent
+                }
+            }
             if (resource == null) {
                 break;
             }
