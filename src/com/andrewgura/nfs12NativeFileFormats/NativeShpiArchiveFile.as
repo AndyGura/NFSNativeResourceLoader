@@ -101,9 +101,9 @@ public class NativeShpiArchiveFile extends ArrayCollection {
                 trace("#################### skipping 0");
                 return null;
             case 34:
-            case 3:
-                return new NativePalette24bit(bd, true, id);
+                return new NativePalette24bit(bd, true);
             case 36:
+//            case 124: // it seems to be an 24 bit palette, but it breaks up textures for some reason
                 return new NativePalette24bit(bd);
             case 41:
                 trace("#################### skipping 41"); //16-bit DOS palette
@@ -121,9 +121,6 @@ public class NativeShpiArchiveFile extends ArrayCollection {
                 return null;
             case 123:
                 return new NativeBitmap8bit(bd, palette);
-            case 124:
-                trace("#################### skipping 124");
-                return null;
             case 125:
                 return new NativeBitmap32bit(bd);
             case 126:
