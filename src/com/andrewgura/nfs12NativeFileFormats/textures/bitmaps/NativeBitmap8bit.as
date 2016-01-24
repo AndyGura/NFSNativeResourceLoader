@@ -37,7 +37,7 @@ public class NativeBitmap8bit extends BitmapData implements INativeBitmap {
     public function NativeBitmap8bit(data:ByteArray, palette:INativePalette) {
         super(data.readUnsignedShort(), data.readUnsignedShort());
         data.position += 8;
-        data.readBytes(colorData, 0, Math.ceil(width * height / 4) * 4);
+        data.readBytes(colorData, 0, width * height);
         if (palette != null) {
             setupPixels(palette);
         }

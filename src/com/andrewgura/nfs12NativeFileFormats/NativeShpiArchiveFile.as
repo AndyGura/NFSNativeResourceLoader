@@ -101,11 +101,12 @@ public class NativeShpiArchiveFile extends ArrayCollection {
                 trace("#################### skipping 0");
                 return null;
             case 34:
-                return new NativePalette24bit(bd, true);
+            case 3:
+                return new NativePalette24bit(bd, true, id);
             case 36:
                 return new NativePalette24bit(bd);
             case 41:
-                trace("#################### skipping 41");
+                trace("#################### skipping 41"); //16-bit DOS palette
                 return null;
             case 42:
                 return new NativePalette32bit(bd);
