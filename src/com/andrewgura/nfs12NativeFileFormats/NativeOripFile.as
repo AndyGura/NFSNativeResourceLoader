@@ -35,6 +35,7 @@ public class NativeOripFile {
             var normal:Number = data.readByte();
             var textureID:String = getTextureName(data, data.readByte());
             var subModel:SubModelDescriptionVO = new SubModelDescriptionVO(textureID);
+            subModel.textureID = textureID;
             data.position += 1;
             var offset3D:uint = data.readUnsignedInt();
             var offset2D:uint = data.readUnsignedInt();
