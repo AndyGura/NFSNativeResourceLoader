@@ -21,8 +21,10 @@ import mx.collections.ArrayCollection;
 
 public class NativeShpiArchiveFile extends ArrayCollection {
 
+    public static var lastGlobalPalette:INativePalette;
+
     public var texturesMap:Dictionary = new Dictionary;
-    private var _globalPalette:INativePalette;
+    private var _globalPalette:INativePalette = lastGlobalPalette;
     public function get globalPalette():INativePalette {
         return _globalPalette;
     }
@@ -32,6 +34,7 @@ public class NativeShpiArchiveFile extends ArrayCollection {
         for each (var item:INativeBitmap in this) {
             item.addNestedResource(_globalPalette);
         }
+        lastGlobalPalette = _globalPalette;
     }
 
     public var directoryIdentifier:String;

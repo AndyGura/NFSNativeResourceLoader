@@ -24,7 +24,9 @@ public class NFSNativeResourceLoader {
         } else if (id == 'SHPI') {
             return new NativeShpiArchiveFile(data);
         } else if (id == 'FNTF') {
-            return new NativeFfnFile(data);
+            var ffn:* = new NativeFfnFile(data);
+            ffn.name = name;
+            return ffn;
         } else if (id == 'ORIP') {
             return new NativeOripFile(name, data);
         } else if (id == 'wwww') {

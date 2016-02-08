@@ -6,6 +6,8 @@ import flash.utils.Endian;
 
 public class NativeFfnFile extends BitmapData {
 
+    public var name:String;
+
     public function NativeFfnFile(file:ByteArray) {
         file.endian = Endian.LITTLE_ENDIAN;       //Это означет, что, например, число 00 00 00 C3 записано в файле как "С3 00 00 00"
         file.position = 2500;
