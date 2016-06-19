@@ -19,16 +19,17 @@ public class NativeWwwwArchiveFile extends ArrayCollection {
         while (offsets.length < chunksCount) {
             offsets.push(file.readUnsignedInt());
         }
-        for (var i:Number = 0; i < chunksCount; i++) {
+        var i:uint;
+        for (i = 0; i < chunksCount; i++) {
             var data:ByteArray = new ByteArray();
             file.position = offsets[i];
             var chunkLength:Number = (i < chunksCount - 1 ? offsets[i + 1] - offsets[i] : file.bytesAvailable);
             file.readBytes(data, 0, chunkLength);
-            chunks.addItem(NFSNativeResourceLoader.loadNativeFileFromData(name+'.'+i, data));
+            chunks.addItem(NFSNativeResourceLoader.loadNativeFileFromData(name + '.' + i, data));
         }
-        for (var i:Number=0;i<chunks.length-1;i++) {
-            if (chunks[i] is NativeOripFile && chunks[i+1] is NativeShpiArchiveFile) {
-                ModelsUtils.attachSHPItoOrip(NativeShpiArchiveFile(chunks[i+1]), NativeOripFile(chunks[i]));
+        for (i = 0; i < chunks.length - 1; i++) {
+            if (chunks[i] is NativeOripFile && chunks[i + 1] is NativeShpiArchiveFile) {
+                ModelsUtils.attachSHPItoOrip(NativeShpiArchiveFile(chunks[i + 1]), NativeOripFile(chunks[i]));
             }
         }
         addAll(chunks);
